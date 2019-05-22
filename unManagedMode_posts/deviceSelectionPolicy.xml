@@ -1,0 +1,11 @@
+<vnsLDevCtx nodeNameOrLbl="N1" name="" graphNameOrLbl="UnManaged-2ARM-ServiceGraphTemplate" dn="uni/tn-may22/ldevCtx-c-Contract-bigipFin-g-UnManaged-2ARM-ServiceGraphTemplate-n-N1" descr="" ctrctNameOrLbl="Contract-bigipFin">
+   <vnsRsLDevCtxToLDev tDn="uni/tn-may22/lDevVip-bigip" />
+   <vnsLIfCtx name="" descr="" permitLog="no" connNameOrLbl="provider">
+      <vnsRsLIfCtxToBD tDn="uni/tn-may22/BD-internalBD" />
+      <vnsRsLIfCtxToLIf tDn="uni/tn-may22/lDevVip-bigip/lIf-Internal" />
+   </vnsLIfCtx>
+   <vnsLIfCtx name="" descr="" permitLog="no" connNameOrLbl="consumer">
+      <vnsRsLIfCtxToBD tDn="uni/tn-may22/BD-externalBD" />
+      <vnsRsLIfCtxToLIf tDn="uni/tn-may22/lDevVip-bigip/lIf-External" />
+   </vnsLIfCtx>
+</vnsLDevCtx>

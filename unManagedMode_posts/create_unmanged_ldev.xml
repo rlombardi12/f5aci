@@ -1,0 +1,25 @@
+<vnsLDevVip trunking="no" svcType="ADC" packageModel="" name="bigip" mode="legacy-Mode" managed="no" isCopy="no" funcType="GoTo" dn="uni/tn-may22/lDevVip-bigip" devtype="PHYSICAL" contextAware="single-Context">
+   <vnsRsALDevToPhysDomP tDn="uni/phys-ServiceUnmanagedPhy" />
+   <vnsCDev name="Device2" vmName="" vcenterName="" devCtxLbl="">
+      <vnsCCred name="username" value="a" />
+      <vnsCCredSecret name="password" />
+      <vnsCIf name="Device2_IntExt" vnicName="">
+         <vnsRsCIfPathAtt tDn="topology/pod-1/paths-103/pathep-[eth1/34]" />
+      </vnsCIf>
+   </vnsCDev>
+   <vnsCDev name="Device1" vmName="" vcenterName="" devCtxLbl="">
+      <vnsCCred name="username" value="a" />
+      <vnsCCredSecret name="password" />
+      <vnsCIf name="Device1_IntExt" vnicName="">
+         <vnsRsCIfPathAtt tDn="topology/pod-1/paths-102/pathep-[eth1/34]" />
+      </vnsCIf>
+   </vnsCDev>
+   <vnsLIf name="External" encap="vlan-2196">
+      <vnsRsCIfAttN tDn="uni/tn-may22/lDevVip-bigip/cDev-Device1/cIf-[Device1_IntExt]" />
+      <vnsRsCIfAttN tDn="uni/tn-may22/lDevVip-bigip/cDev-Device2/cIf-[Device2_IntExt]" />
+   </vnsLIf>
+   <vnsLIf name="Internal" encap="vlan-2696">
+      <vnsRsCIfAttN tDn="uni/tn-may22/lDevVip-bigip/cDev-Device1/cIf-[Device1_IntExt]" />
+      <vnsRsCIfAttN tDn="uni/tn-may22/lDevVip-bigip/cDev-Device2/cIf-[Device2_IntExt]" />
+   </vnsLIf>
+</vnsLDevVip>
