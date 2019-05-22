@@ -1,0 +1,27 @@
+- name: APPLY CONTRACTS TO EPG
+  hosts: apic
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - variable_file.yaml
+
+  tasks:
+
+  - name: Create XML POSTS from templates
+    template: src={{ item.src }} dest={{ item.dest }}
+    with_items:
+      - { src: 'unManagedMode_posts/attach_cons_prov_contract.j2', dest: 'unManagedMode_posts/attach_cons_prov_contract.xml'}
+
+
+  - name: Apply consumed and provided contracts to EndPoint Group
+    aci_rest:
+      action: "post"
+      uri: "/api/node/mo/uni/tn-{{tenant_name}}.xml"
+      config_file: "{{ item }}"
+      host: "{{inventory_hostname}}"
+      validate_certs: false
+      username: admin
+      password: ciscopsdt
+    with_items:
+     - "unManagedMode_posts/attach_cons_prov_contract.xml"

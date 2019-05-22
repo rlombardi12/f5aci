@@ -1,0 +1,16 @@
+---
+- name: CLEAN UP LAB ON APIC SANDBOX
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars_files:
+    - variable_file.yaml
+  tasks:
+    - name: DELETING YOUR TENANT :)
+      aci_rest:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        method: "delete"
+        validate_certs: False
+        path: "api/mo/uni/tn-{{ tenant }}.json"

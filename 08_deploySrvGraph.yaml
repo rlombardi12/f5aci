@@ -1,0 +1,26 @@
+- name: DEPLOY SERVICE GRAPH
+  hosts: apic
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - variable_file.yaml
+
+  tasks:
+
+  - name: Create XML POSTS from templates
+    template: src={{ item.src }} dest={{ item.dest }}
+    with_items:
+      - { src: 'unManagedMode_posts/apply_graph.j2',               dest: 'unManagedMode_posts/apply_graph.xml'}
+
+
+  - name: Assign service graph template to contract
+    aci_rest:
+      action: "post"
+      uri: "/api/node/mo/uni/tn-{{tenant_name}}.xml"
+      config_file: "{{ item }}"
+      host: "{{inventory_hostname}}"
+      validate_certs: false
+      username: admin
+      password: ciscopsdt
+    with_items: 'unManagedMode_posts/apply_graph.xml'

@@ -1,0 +1,104 @@
+---
+- name: VALIDATE APPLICATION EXISTENCE
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars_files:
+   - variable_file.yaml
+
+  tasks:
+    - name: ENSURE APPLICATION EXISTS
+      aci_ap:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: "{{ appProfile_name }}"
+        descr: "LAB App Profile"
+
+    - name: CREATE EXTERNAL EPG
+      aci_epg:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: "{{ appProfile_name }}"
+        epg: externalEPG
+        bd: externalBD
+        description: "External EPG"
+
+    - name: ENSURE DOMAIN IS BOUND TO EPG
+      aci_epg_to_domain:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: false
+        tenant: "{{ tenant }}"
+        ap: "{{ appProfile_name }}"
+        epg: externalEPG
+        domain: "aci_bigip_lab"
+        domain_type: "vmm"
+        vm_provider: "vmware"
+        encap_mode: "auto"
+        encap: 10
+#      with_items: "{{ epgs }}"
+
+    - name: ENSURE EPG IS ASSOCIATED TO CONTRACTS
+      aci_epg_to_contract:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: "{{ appProfile_name }}"
+        epg: externalEPG
+        contract: "{{ contract_name }}"
+        contract_type: consumer
+      
+    - name: CREATE INTERNAL EPG
+      aci_epg:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: "{{ appProfile_name }}"
+        epg: internalEPG
+        bd: internalBD
+        description: "Internal EPG"
+
+    - name: ENSURE DOMAIN IS BOUND TO EPG
+      aci_epg_to_domain:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: false
+        tenant: "{{ tenant }}"
+        ap: "{{ appProfile_name }}"
+        epg: internalEPG
+        domain: "aci_bigip_lab"
+        domain_type: "vmm"
+        vm_provider: "vmware"
+        encap_mode: "auto"
+        encap: 20
+
+    - name: ENSURE EPG IS ASSOCIATED TO CONTRACTS
+      aci_epg_to_contract:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: "{{ appProfile_name }}"
+        epg: internalEPG
+        contract: "{{ contract_name }}"
+        contract_type: provider

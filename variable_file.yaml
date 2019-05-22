@@ -1,0 +1,49 @@
+tenant: "may22"
+tenant_name: "may22"
+
+consumerBD_name: "externalBD"
+providerBD_name: "internalBD"
+
+appProfile_name: "AP_01"
+consumerEPG_name: "externalEPG"
+providerEPG_name: "internalEPG"
+
+logicalDeviceCluster_name: "bigip"
+
+device1_interface1_connectionPath: "pod-1/paths-102/pathep-[eth1/34]"
+device1_interface2_connectionPath: ""
+
+device2_interface1_connectionPath: "pod-1/paths-103/pathep-[eth1/34]"
+device2_interface2_connectionPath: ""
+
+SGtemplate_name: "UnManaged-2ARM-ServiceGraphTemplate"
+contract_name: "Contract-bigipFin"
+physical_domain_name: "ServiceUnmanagedPhy"
+username: "admin"
+password: "ciscopsdt"
+#########
+
+consumer_vlan_name: "External_VLAN"
+consumer_vlan: "2196"
+
+provider_vlan_name: "Internal_VLAN"
+provider_vlan: "2696"
+
+vip_port: "80"
+vip_ip: "10.1.10.100"
+
+pool_members:
+- port: "80"
+  host: "10.1.20.11"
+- port: "80"
+  host: "10.1.20.12"
+
+bigipVE_selfip_information:
+- name: 'External-SelfIP'
+  address: '10.1.10.240'
+  netmask: '255.255.255.0'
+  vlan: "External_VLAN"
+- name: 'Internal-SelfIP'
+  address: '10.1.20.240'
+  netmask: '255.255.255.0'
+  vlan: 'Internal_VLAN'

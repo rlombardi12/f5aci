@@ -1,0 +1,26 @@
+- name: CREATING VIP FOR WEB SERVICES
+  hosts: bigips
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - variable_file.yaml
+
+  tasks:
+  - name: ADDING VIRTUAL SERVER
+    bigip_virtual_server:
+         server: "{{inventory_hostname}}"
+         user: "admin"
+         password: "f5DEMOs4u12345"
+         name: "{{tenant_name}}_http_vs"
+         destination: "{{vip_ip}}"
+         port: "{{vip_port}}"
+         enabled_vlans: 
+          - "{{tenant_name}}_{{consumer_vlan_name}}"
+          - "{{tenant_name}}_{{provider_vlan_name}}"
+         #profiles_both: "http"
+         pool: "{{tenant_name}}_http-pool"
+         snat: "automap"
+         validate_certs: False
+    delegate_to: localhost
+

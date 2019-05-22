@@ -1,0 +1,18 @@
+---
+- name: VALIDATE TENANT EXISTENCE
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars_files:
+     - variable_file.yaml
+
+  tasks:
+    - name: CREATE TENANT 
+      aci_tenant:
+        host: "{{ ansible_host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        description: "Lab tenant"

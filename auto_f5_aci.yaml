@@ -1,0 +1,356 @@
+---
+- name: 01 CREATE  ACI CONFIGURATION
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars_prompt:
+      - name: "tenant"
+        prompt: "Name your Tenant:"   
+        private: no 
+  vars_files:
+    - variable_file.yaml
+
+  tasks:
+    - name: CREATING XML POSTS FROM TEMPLATES
+      template: src={{ item.src }} dest={{ item.dest }}
+      with_items:
+      - { src: 'unManagedMode_posts/create_unmanged_ldev.j2',      dest: 'unManagedMode_posts/create_unmanged_ldev.xml' }
+      - { src: 'unManagedMode_posts/contract.j2',                  dest: 'unManagedMode_posts/contract.xml' }
+      - { src: 'unManagedMode_posts/service_graph_template.j2',    dest: 'unManagedMode_posts/service_graph_template.xml'}
+      - { src: 'unManagedMode_posts/deviceSelectionPolicy.j2',     dest: 'unManagedMode_posts/deviceSelectionPolicy.xml'}
+      - { src: 'unManagedMode_posts/apply_graph.j2',               dest: 'unManagedMode_posts/apply_graph.xml'}
+      - { src: 'unManagedMode_posts/attach_cons_prov_contract.j2', dest: 'unManagedMode_posts/attach_cons_prov_contract.xml'}
+
+    - name: CREATING TENANT 
+      aci_tenant:
+        host: "{{ ansible_host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        description: "Lab tenant"
+
+    - name: CREATING VRF
+      aci_vrf:
+        host: "{{ ansible_host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        vrf: "financeVRF"
+        description: "LAB VRF"
+
+    - name:  CREATING EXTERNAL BRIDGE DOMAIN 
+      aci_bd:
+        host: "{{ ansible_host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        bd: externalBD
+        vrf: financeVRF
+        description: "external BD"
+
+    - name: CREATING EXTERNAL BRIDGE DOMAIN SUBNET
+      aci_bd_subnet:
+        host: "{{ ansible_host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        bd: externalBD
+        gateway: "10.1.10.1"
+        mask: 24
+        description: "External Subnet"
+
+    - name: CREATING INTERNAL BRIDGE DOMAIN
+      aci_bd:
+        host: "{{ ansible_host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        bd: internalBD
+        vrf: financeVRF
+        description: " internal BD "
+
+    - name: CREATING INTERNAL BRDIGE DOMAIN SUBNET
+      aci_bd_subnet: 
+        host: "{{ ansible_host}}" 
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        bd: internalBD
+        gateway: "10.1.20.1"
+        mask: 24
+        description: "Internal Subnet" 
+
+
+    - name: CREATING UNMANAGED LOGICAL DEVICE
+      aci_rest:
+        action: "post"
+        uri: "/api/node/mo/uni/tn-{{tenant_name}}.xml"
+        config_file: "{{ item }}"
+        host: "{{inventory_hostname}}"
+        validate_certs: false 
+        username: admin
+        password: ciscopsdt
+      with_items:
+       - "unManagedMode_posts/create_unmanged_ldev.xml"
+
+
+
+    - name: CREATING CONTRACT
+      aci_rest:
+        action: "post"
+        uri: "/api/node/mo/uni/tn-{{ tenant }}.xml"
+        config_file: "{{ item }}"
+        host: "{{inventory_hostname}}"
+        validate_certs: false
+        username: admin
+        password: ciscopsdt
+      with_items:
+       - "unManagedMode_posts/contract.xml"
+
+    - name: CREATING APPLICATION PROFILE
+      aci_ap:
+         host: "{{ inventory_hostname }}"
+         username: "{{ username }}"
+         password: "{{ password }}"
+         state: "present"
+         validate_certs: False
+         tenant: "{{ tenant }}"
+         ap: ApplicationProfile
+         descr: "LAB App Profile"
+
+    - name: CREATING EXTERNAL EPG
+      aci_epg:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: ApplicationProfile
+        epg: externalEPG
+        bd: externalBD
+        description: "External EPG"
+
+    - name: VALIDATING DOMAIN IS BOUND TO EPG
+      aci_epg_to_domain:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: false
+        tenant: "{{ tenant }}"
+        ap: ApplicationProfile
+        epg: externalEPG
+        domain: "aci_bigip_lab"
+        domain_type: "vmm"
+        vm_provider: "vmware"
+        encap_mode: "auto"
+        encap: 10
+    
+    - name: VALIDATING EPG IS ASSOCIATED TO CONTRACTS
+      aci_epg_to_contract:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: ApplicationProfile
+        epg: externalEPG
+        contract: labVEsa-Contract
+        contract_type: consumer
+      
+    - name: CREATING INTERNAL EPG
+      aci_epg:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: ApplicationProfile
+        epg: internalEPG
+        bd: internalBD
+        description: "Internal EPG"
+
+    - name: VALIDATING DOMAIN IS BOUND TO EPG
+      aci_epg_to_domain:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: false
+        tenant: "{{ tenant }}"
+        ap: ApplicationProfile
+        epg: internalEPG
+        domain: "aci_bigip_lab"
+        domain_type: "vmm"
+        vm_provider: "vmware"
+        encap_mode: "auto"
+        encap: 20
+
+    - name: VALIDATING EPG IS ASSOCIATED TO CONTRACTS
+      aci_epg_to_contract:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: ApplicationProfile
+        epg: internalEPG
+        contract: labVEsa-Contract
+        contract_type: provider
+
+    - name: CREATING SERVICE GRAPH TEMPLATE
+      aci_rest:
+        action: "post"
+        uri: "/api/node/mo/uni/tn-{{ tenant_name }}.xml"
+        config_file: "{{ item }}"
+        host: "{{inventory_hostname}}"
+        validate_certs: false
+        username: admin
+        password: ciscopsdt
+      with_items:
+       - "unManagedMode_posts/service_graph_template.xml"
+
+
+    - name: CREATING DEVICE SELECTION POLICY
+      aci_rest:
+        action: "post"
+        uri: "/api/node/mo/uni/tn-{{ tenant_name }}.xml"
+        config_file: "{{ item }}"
+        host: "{{inventory_hostname}}"
+        validate_certs: false
+        username: admin
+        password: ciscopsdt
+      with_items:
+       - "unManagedMode_posts/deviceSelectionPolicy.xml"
+
+
+    - name: ASSIGNING SERVICE GRAPH TO CONTRACT
+      aci_rest:
+        action: "post"
+        uri: "/api/node/mo/uni/tn-{{ tenant_name }}.xml"
+        config_file: "{{ item }}"
+        host: "{{inventory_hostname}}"
+        validate_certs: false
+        username: admin
+        password: ciscopsdt
+      with_items: 'unManagedMode_posts/apply_graph.xml'
+
+
+    - name: APPLYING CONTRACTS TO EPG
+      aci_rest:
+        action: "post"
+        uri: "/api/node/mo/uni/tn-{{ tenant_name }}.xml"
+        config_file: "{{ item }}"
+        host: "{{inventory_hostname}}"
+        validate_certs: false
+        username: admin
+        password: ciscopsdt
+      with_items:
+       - "unManagedMode_posts/attach_cons_prov_contract.xml"
+
+- name: 02 BIG-IP CONFIGURATION
+  hosts: bigips
+  connection: local
+  gather_facts: false
+  
+  vars_files:
+   - variable_file.yaml 
+
+  tasks:
+    - name: ADDING PROVIDER VLAN   
+      bigip_vlan:
+        name: "{{tenant_name}}_{{consumer_vlan_name}}"
+        provider:
+          server: "10.1.1.245"
+          user: "admin"
+          password: "admin"
+        tag: "{{consumer_vlan}}"
+        tagged_interfaces:
+        - "1.1"
+        validate_certs: "no"
+      delegate_to: localhost
+    - name: ADDING CONSUMER VLAN 
+      bigip_vlan:
+        name: "{{tenant_name}}_{{provider_vlan_name}}"
+        provider:
+          server: "{{inventory_hostname}}"
+          user: "admin"
+          password: "admin"
+        tag: "{{provider_vlan}}"
+        tagged_interfaces:
+        - "1.2"
+        validate_certs: "no"
+      delegate_to: localhost
+    - name: CONFIGURING SELF-IP FOR EACH NETWORK
+      bigip_selfip:
+        server: "{{inventory_hostname}}"
+        user: "admin"
+        password: "admin"
+        validate_certs: "no"
+        name: "{{tenant_name}}_{{item.name}}"
+        address: "{{item.address}}"
+        netmask: "{{item.netmask}}"
+        vlan: "{{tenant_name}}_{{item.vlan}}"
+      with_items: "{{ bigipVE_selfip_information }}"
+      delegate_to: localhost
+
+
+    - name: CREATING POOL
+      bigip_pool:
+        server: "{{inventory_hostname}}"
+        user: "admin"
+        password: "admin"
+        validate_certs: "no"
+        state: "present"
+        name: "{{tenant_name}}_http-pool"
+        lb_method: "round-robin"
+        #monitors: "/Common/http"
+        #monitor_type: "and_list"
+        #quorum: 1
+      delegate_to: localhost
+  
+    - name: ADDING POOL MEMBERS
+      bigip_pool_member:
+        server: "{{inventory_hostname}}"
+        user: "admin"
+        password: "admin"
+        pool: "{{tenant_name}}_http-pool"
+        #name: "{{tenant_name}}_http-pool"
+        host: "{{item.host}}"
+        port: "{{item.port}}"
+        validate_certs: False
+      with_items: "{{pool_members}}"
+      delegate_to: localhost
+
+    - name: ADDING VIRTUAL SERVER
+      bigip_virtual_server:
+        server: "{{inventory_hostname}}"
+        user: "admin"
+        password: "admin"
+        name: "{{tenant_name}}_http_vs"
+        destination: "{{vip_ip}}"
+        port: "{{vip_port}}"
+        enabled_vlans: 
+         - "{{tenant_name}}_{{consumer_vlan_name}}"
+         - "{{tenant_name}}_{{provider_vlan_name}}"
+        #profiles_both: "http"
+        pool: "{{tenant_name}}_http-pool"
+        snat: "automap"
+        validate_certs: False
+      delegate_to: localhost

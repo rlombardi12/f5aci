@@ -1,0 +1,47 @@
+- name: CONFIGURING VLAN AND SELF-IP
+  hosts: bigips
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - variable_file.yaml
+
+  tasks:
+
+  - name: ADDING PROVIDER VLAN
+    bigip_vlan:
+      server: "{{inventory_hostname}}"
+      user: "admin"
+      password: "f5DEMOs4u12345"
+      name: "{{tenant_name}}_{{consumer_vlan_name}}"
+      tag: "{{consumer_vlan}}"
+      tagged_interfaces:
+      - "1.1"
+      validate_certs: False
+    delegate_to: localhost
+
+  - name: ADDING CONSUMER VLAN
+    bigip_vlan:
+      server: "{{inventory_hostname}}"
+      user: "admin"
+      password: "f5DEMOs4u12345"
+      name: "{{tenant_name}}_{{provider_vlan_name}}"
+      tag: "{{provider_vlan}}"
+      tagged_interfaces:
+      - "1.2"
+      validate_certs: False
+    delegate_to: localhost
+
+  - name: CONFIGURING SELF-IP
+    bigip_selfip:
+     server: "{{inventory_hostname}}"
+     user: "admin"
+     password: "f5DEMOs4u12345"
+     validate_certs: False
+     name: "{{tenant_name}}_{{item.name}}"
+     address: "{{item.address}}"
+     netmask: "{{item.netmask}}"
+     vlan: "{{tenant_name}}_{{item.vlan}}"
+    with_items: "{{ bigipVE_selfip_information }}"
+    delegate_to: localhost
+
