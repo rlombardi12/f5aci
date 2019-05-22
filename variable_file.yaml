@@ -1,5 +1,5 @@
-tenant: "may22"
-tenant_name: "may22"
+tenant: "CHANGEME"
+tenant_name: "CHANGME"
 
 consumerBD_name: "externalBD"
 providerBD_name: "internalBD"
