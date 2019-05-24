@@ -15,7 +15,7 @@
         state: "present"
         validate_certs: False
         tenant: "{{ tenant }}"
-        vrf: financeVRF
+        vrf: "{{ vrf_name }}"
         description: "LAB VRF"
 
     - name:  CREATE EXTERNAL BRIDGE DOMAIN 
@@ -26,8 +26,8 @@
         state: "present"
         validate_certs: False
         tenant: "{{ tenant }}"
-        bd: externalBD
-        vrf: financeVRF
+        bd: "{{consumerBD_name}}"
+        vrf: "{{vrf_name}}"
         description: "external BD"
 
     - name: CREATE EXTERNAL BRIDGE DOMAIN SUBNET
@@ -38,7 +38,7 @@
         state: "present"
         validate_certs: False
         tenant: "{{ tenant }}"
-        bd: externalBD
+        bd: "{{consumerBD_name}}"
         gateway: "10.1.10.1"
         mask: 24
         description: "External Subnet"
@@ -51,8 +51,8 @@
         state: "present"
         validate_certs: False
         tenant: "{{ tenant }}"
-        bd: internalBD
-        vrf: financeVRF
+        bd: "{{providerBD_name}}"
+        vrf: "{{vrf_name}}"
         description: " internal BD "
 
     - name: CREATE INTERNAL BRDIGE DOMAIN SUBNET
@@ -63,7 +63,7 @@
         state: "present"
         validate_certs: False
         tenant: "{{ tenant }}"
-        bd: internalBD
+        bd: "{{providerBD_name}}"
         gateway: "10.1.20.1"
         mask: 24
         description: "Internal Subnet" 

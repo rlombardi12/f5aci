@@ -21,6 +21,6 @@
       config_file: "{{ item }}"
       host: "{{inventory_hostname}}"
       validate_certs: false
-      username: admin
-      password: ciscopsdt
+      username: "{{ username }}"
+      password: "{{ password }}"
     with_items: 'unManagedMode_posts/apply_graph.xml'

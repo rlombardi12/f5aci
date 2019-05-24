@@ -27,8 +27,8 @@
         validate_certs: False
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
-        epg: externalEPG
-        bd: externalBD
+        epg: "{{consumerEPG_name}}"
+        bd: "{{consumerBD_name}}"
         description: "External EPG"
 
     - name: ENSURE DOMAIN IS BOUND TO EPG
@@ -40,7 +40,7 @@
         validate_certs: false
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
-        epg: externalEPG
+        epg: "{{consumerEPG_name}}"
         domain: "aci_bigip_lab"
         domain_type: "vmm"
         vm_provider: "vmware"
@@ -57,9 +57,9 @@
         validate_certs: False
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
-        epg: externalEPG
+        epg: "{{consumerEPG_name}}"
         contract: "{{ contract_name }}"
-        contract_type: consumer
+        contract_type: "consumer"
       
     - name: CREATE INTERNAL EPG
       aci_epg:
@@ -70,8 +70,8 @@
         validate_certs: False
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
-        epg: internalEPG
-        bd: internalBD
+        epg: "{{providerEPG_name}}"
+        bd: "{{providerBD_name}}"
         description: "Internal EPG"
 
     - name: ENSURE DOMAIN IS BOUND TO EPG
@@ -83,7 +83,7 @@
         validate_certs: false
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
-        epg: internalEPG
+        epg: "{{providerEPG_name}}"
         domain: "aci_bigip_lab"
         domain_type: "vmm"
         vm_provider: "vmware"
@@ -99,6 +99,6 @@
         validate_certs: False
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
-        epg: internalEPG
+        epg: "{{providerEPG_name}}"
         contract: "{{ contract_name }}"
-        contract_type: provider
+        contract_type: "provider"

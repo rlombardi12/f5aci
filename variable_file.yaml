@@ -1,14 +1,16 @@
-tenant: "CHANGEME"
-tenant_name: "CHANGME"
+tenant: "xxtenant"
+tenant_name: "xxtenant"
 
-consumerBD_name: "externalBD"
-providerBD_name: "internalBD"
+vrf_name: "xxfinanceVRF"
 
-appProfile_name: "AP_01"
-consumerEPG_name: "externalEPG"
-providerEPG_name: "internalEPG"
+consumerBD_name: "xxexternalBD"
+providerBD_name: "xxinternalBD"
 
-logicalDeviceCluster_name: "bigip"
+appProfile_name: "AP_xx"
+consumerEPG_name: "xxexternalEPG"
+providerEPG_name: "xxinternalEPG"
+
+logicalDeviceCluster_name: "xxbigip"
 
 device1_interface1_connectionPath: "pod-1/paths-102/pathep-[eth1/34]"
 device1_interface2_connectionPath: ""
@@ -16,18 +18,22 @@ device1_interface2_connectionPath: ""
 device2_interface1_connectionPath: "pod-1/paths-103/pathep-[eth1/34]"
 device2_interface2_connectionPath: ""
 
-SGtemplate_name: "UnManaged-2ARM-ServiceGraphTemplate"
-contract_name: "Contract-bigipFin"
-physical_domain_name: "ServiceUnmanagedPhy"
+SGtemplate_name: "xxUnManaged-2ARM-ServiceGraphTemplate"
+contract_name: "xxContract-bigipFin"
+physical_domain_name: "xxServiceUnmanagedPhy"
+# 
 username: "admin"
 password: "ciscopsdt"
+user: "admin"
+pass: "f5DEMOs4u12345"
+
 #########
 
-consumer_vlan_name: "External_VLAN"
-consumer_vlan: "2196"
+consumer_vlan_name: "xxExternal_VLAN"
+consumer_vlan: "xx0"
 
-provider_vlan_name: "Internal_VLAN"
-provider_vlan: "2696"
+provider_vlan_name: "xxInternal_VLAN"
+provider_vlan: "0xx"
 
 vip_port: "80"
 vip_ip: "10.1.10.100"
@@ -39,11 +45,11 @@ pool_members:
   host: "10.1.20.12"
 
 bigipVE_selfip_information:
-- name: 'External-SelfIP'
+- name: 'xxExternal-SelfIP'
   address: '10.1.10.240'
   netmask: '255.255.255.0'
-  vlan: "External_VLAN"
-- name: 'Internal-SelfIP'
+  vlan: "xxExternal_VLAN"
+- name: 'xxInternal-SelfIP'
   address: '10.1.20.240'
   netmask: '255.255.255.0'
-  vlan: 'Internal_VLAN'
+  vlan: 'xxInternal_VLAN'

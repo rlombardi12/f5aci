@@ -12,8 +12,8 @@
   - name: CREATING POOL
     bigip_pool:
         server: "{{inventory_hostname}}"
-        user: "admin"
-        password: "f5DEMOs4u12345"
+        user: "{{ user }"
+        password: "{{ pass }}"
         state: "present"
         name: "{{tenant_name}}_http-pool"
         lb_method: "round-robin"
@@ -24,12 +24,12 @@
   - name: ADDING POOL MEMBERS
     bigip_pool_member:
         server: "{{inventory_hostname}}"
-        user: "admin"
-        password: "f5DEMOs4u12345"
+        user: "{{ user }"
+        password: "{{ pass }}"
         pool: "{{tenant_name}}_http-pool"
         #name: "{{tenant_name}}_http-pool"
-        host: "{{item.host}}"
-        port: "{{item.port}}"
+       # host: "{{item.host}}"
+       # port: "{{item.port}}"
         validate_certs: False
     with_items: "{{pool_members}}"
     delegate_to: localhost

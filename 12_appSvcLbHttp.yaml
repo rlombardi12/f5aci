@@ -10,8 +10,8 @@
   - name: ADDING VIRTUAL SERVER
     bigip_virtual_server:
          server: "{{inventory_hostname}}"
-         user: "admin"
-         password: "f5DEMOs4u12345"
+         user: "{{ user }"
+         password: "{{ pass }}"
          name: "{{tenant_name}}_http_vs"
          destination: "{{vip_ip}}"
          port: "{{vip_port}}"

@@ -12,11 +12,6 @@
     template: src={{ item.src }} dest={{ item.dest }}
     with_items:
       - { src: 'unManagedMode_posts/create_unmanged_ldev.j2',      dest: 'unManagedMode_posts/create_unmanged_ldev.xml' }
-#      - { src: 'unManagedMode_posts/contract.j2',                  dest: 'unManagedMode_posts/contract.xml' }
-#      - { src: 'unManagedMode_posts/service_graph_template.j2',    dest: 'unManagedMode_posts/service_graph_template.xml'}
-#      - { src: 'unManagedMode_posts/deviceSelectionPolicy.j2',     dest: 'unManagedMode_posts/deviceSelectionPolicy.xml'}
-#      - { src: 'unManagedMode_posts/apply_graph.j2',               dest: 'unManagedMode_posts/apply_graph.xml'}
-# i      - { src: 'unManagedMode_posts/attach_cons_prov_contract.j2', dest: 'unManagedMode_posts/attach_cons_prov_contract.xml'}
 
   - name: Create unmanaged logical device cluster
     aci_rest:
@@ -25,7 +20,7 @@
       config_file: "{{ item }}"
       host: "{{inventory_hostname}}"
       validate_certs: false 
-      username: admin
-      password: ciscopsdt
+      username: "{{ username }}"
+      password: "{{ password }}"
     with_items:
      - "unManagedMode_posts/create_unmanged_ldev.xml"
