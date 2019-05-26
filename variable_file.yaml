@@ -1,21 +1,19 @@
-# thins is bigip cannot name objects that starts with a number. something of this came up in the bootcamp
-# + indeed with one our friends labs. 
-# so use jj for all the values and 23 to change numbers for vlans external internal and second octect of sIPS
+# Use xx for all the values and yy to change numbers for vlans external internal and second octect of SELF-IP
 # student should run sed a couple times
 
-tenant: "jjtenant"
-tenant_name: "jjtenant"
+tenant: "xxtenant"
+tenant_name: "xxtenant"
 
-vrf_name: "jjfinanceVRF"
+vrf_name: "xxfinanceVRF"
 
-consumerBD_name: "jjexternalBD"
-providerBD_name: "jjinternalBD"
+consumerBD_name: "xxexternalBD"
+providerBD_name: "xxinternalBD"
 
-appProfile_name: "AP_jj"
-consumerEPG_name: "jjexternalEPG"
-providerEPG_name: "jjinternalEPG"
+appProfile_name: "AP_xx"
+consumerEPG_name: "xxexternalEPG"
+providerEPG_name: "xxinternalEPG"
 
-logicalDeviceCluster_name: "bigipjj"
+logicalDeviceCluster_name: "bigipxx"
 
 device1_interface1_connectionPath: "pod-1/paths-102/pathep-[eth1/34]"
 device1_interface2_connectionPath: ""
@@ -23,38 +21,38 @@ device1_interface2_connectionPath: ""
 device2_interface1_connectionPath: "pod-1/paths-103/pathep-[eth1/34]"
 device2_interface2_connectionPath: ""
 
-SGtemplate_name: "jjUnManaged-2ARM-ServiceGraphTemplate"
-contract_name: "jjContract-bigipFin"
-physical_domain_name: "jjServiceUnmanagedPhy"
+SGtemplate_name: "xxUnManaged-2ARM-ServiceGraphTemplate"
+contract_name: "xxContract-bigipFin"
+physical_domain_name: "xxServiceUnmanagedPhy"
 # 
 username: "admin"
 password: "ciscopsdt"
 user: "admin"
-pass: "f5DEMOs4u12345"
+pass: "f5DEMOs4u1yy45"
 
 #########
 
-consumer_vlan_name: "jjExternal_VLAN"
-consumer_vlan: "230"
+consumer_vlan_name: "xxExternal_VLAN"
+consumer_vlan: "yy0"
 
-provider_vlan_name: "jjInternal_VLAN"
-provider_vlan: "023"
+provider_vlan_name: "xxInternal_VLAN"
+provider_vlan: "0yy"
 
 vip_port: "80"
-vip_ip: "10.230.10.100"
+vip_ip: "10.yy0.10.100"
 
 pool_members:
 - port: "80"
-  host: "10.23.20.11"
+  host: "10.yy.20.11"
 - port: "80"
-  host: "10.23.20.12"
+  host: "10.yy.20.12"
 
 bigipVE_selfip_information:
-- name: 'jjExternal-SelfIP'
-  address: '10.230.10.240'
+- name: 'xxExternal-SelfIP'
+  address: '10.yy0.10.240'
   netmask: '255.255.255.0'
-  vlan: "jjExternal_VLAN"
-- name: 'jjInternal-SelfIP'
-  address: '10.023.20.240'
+  vlan: "xxExternal_VLAN"
+- name: 'xxInternal-SelfIP'
+  address: '10.0yy.20.240'
   netmask: '255.255.255.0'
-  vlan: 'jjInternal_VLAN'
+  vlan: 'xxInternal_VLAN'
