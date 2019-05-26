@@ -1,6 +1,6 @@
 # Use xx for all the values and yy to change numbers for vlans external internal and second octect of SELF-IP
 # student should run sed a couple times
-
+## YY allowed valudes frpom: 11 to 24
 tenant: "xxtenant"
 tenant_name: "xxtenant"
 
