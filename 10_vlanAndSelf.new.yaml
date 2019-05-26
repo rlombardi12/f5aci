@@ -15,7 +15,7 @@
       server: "{{inventory_hostname}}"
       user: "{{ user }}"
       password: "{{ pass }}"
-      name: "{{tenant_name}}_{{consumer_vlan_name}}"
+      name: "{{consumer_vlan_name}}"
       tag: "{{consumer_vlan}}"
       tagged_interfaces:
       - "1.1"
@@ -27,7 +27,7 @@
       server: "{{inventory_hostname}}"
       user: "{{ user }}"
       password: "{{ pass }}"
-      name: "{{tenant_name}}_{{provider_vlan_name}}"
+      name: "{{provider_vlan_name}}"
       tag: "{{provider_vlan}}"
       tagged_interfaces:
       - "1.2"

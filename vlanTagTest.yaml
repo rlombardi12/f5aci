@@ -5,16 +5,14 @@
 
   vars_files:
     - variable_file.yaml
-# este se tiene que revisar porque al pareecr los valores de las VALN estan al reves
-#+ pero asi funcion :/
 
   tasks:
 
   - name: ADDING PROVIDER VLAN
     bigip_vlan:
       server: "{{inventory_hostname}}"
-      user: "{{ user }}"
-      password: "{{ pass }}"
+      user: "admin"
+      password: "f5DEMOs4u12345"
       name: "{{tenant_name}}_{{consumer_vlan_name}}"
       tag: "{{consumer_vlan}}"
       tagged_interfaces:
@@ -25,8 +23,8 @@
   - name: ADDING CONSUMER VLAN
     bigip_vlan:
       server: "{{inventory_hostname}}"
-      user: "{{ user }}"
-      password: "{{ pass }}"
+      user: "admin"
+      password: "f5DEMOs4u12345"
       name: "{{tenant_name}}_{{provider_vlan_name}}"
       tag: "{{provider_vlan}}"
       tagged_interfaces:
@@ -36,14 +34,14 @@
 
   - name: CONFIGURING SELF-IP
     bigip_selfip:
-      server: "{{inventory_hostname}}"
-      user: "{{ user }}"
-      password: "{{ pass }}"
-      validate_certs: False
-      name: "{{tenant_name}}_{{item.name}}"
-      address: "{{item.address}}"
-      netmask: "{{item.netmask}}"
-      vlan: "{{tenant_name}}_{{item.vlan}}"
+     server: "{{inventory_hostname}}"
+     user: "admin"
+     password: "f5DEMOs4u12345"
+     validate_certs: False
+     name: "{{tenant_name}}_{{item.name}}"
+     address: "{{item.address}}"
+     netmask: "{{item.netmask}}"
+     vlan: "{{tenant_name}}_{{item.vlan}}"
     with_items: "{{ bigipVE_selfip_information }}"
     delegate_to: localhost
 

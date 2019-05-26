@@ -7,4 +7,7 @@ ansible_python_interpreter="/usr/bin/env python"
 sandboxapicdc.cisco.com
 
 [bigips]
-10.1.1.245
+#10.1.1.245 ravello
+#10.0.1.4
+35.202.21.134
+

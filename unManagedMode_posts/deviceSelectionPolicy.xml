@@ -1,11 +1,11 @@
-<vnsLDevCtx nodeNameOrLbl="N1" name="" graphNameOrLbl="UnManaged-2ARM-ServiceGraphTemplate" dn="uni/tn-may22/ldevCtx-c-Contract-bigipFin-g-UnManaged-2ARM-ServiceGraphTemplate-n-N1" descr="" ctrctNameOrLbl="Contract-bigipFin">
-   <vnsRsLDevCtxToLDev tDn="uni/tn-may22/lDevVip-bigip" />
+<vnsLDevCtx nodeNameOrLbl="N1" name="" graphNameOrLbl="11UnManaged-2ARM-ServiceGraphTemplate" dn="uni/tn-11tenant/ldevCtx-c-11Contract-bigipFin-g-11UnManaged-2ARM-ServiceGraphTemplate-n-N1" descr="" ctrctNameOrLbl="11Contract-bigipFin">
+   <vnsRsLDevCtxToLDev tDn="uni/tn-11tenant/lDevVip-11bigip" />
    <vnsLIfCtx name="" descr="" permitLog="no" connNameOrLbl="provider">
-      <vnsRsLIfCtxToBD tDn="uni/tn-may22/BD-internalBD" />
-      <vnsRsLIfCtxToLIf tDn="uni/tn-may22/lDevVip-bigip/lIf-Internal" />
+      <vnsRsLIfCtxToBD tDn="uni/tn-11tenant/BD-11internalBD" />
+      <vnsRsLIfCtxToLIf tDn="uni/tn-11tenant/lDevVip-11bigip/lIf-Internal" />
    </vnsLIfCtx>
    <vnsLIfCtx name="" descr="" permitLog="no" connNameOrLbl="consumer">
-      <vnsRsLIfCtxToBD tDn="uni/tn-may22/BD-externalBD" />
-      <vnsRsLIfCtxToLIf tDn="uni/tn-may22/lDevVip-bigip/lIf-External" />
+      <vnsRsLIfCtxToBD tDn="uni/tn-11tenant/BD-11externalBD" />
+      <vnsRsLIfCtxToLIf tDn="uni/tn-11tenant/lDevVip-11bigip/lIf-External" />
    </vnsLIfCtx>
 </vnsLDevCtx>
