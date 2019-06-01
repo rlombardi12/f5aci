@@ -27,8 +27,8 @@ physical_domain_name: "ehServiceUnmanagedPhy"
 # 
 username: "admin"
 password: "ciscopsdt"
-user: "admin"
-pass: "f5DEMOs4u12345"
+user: "TBD"
+pass: "TBD"
 
 #########
 
