@@ -41,11 +41,11 @@
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
         epg: "{{consumerEPG_name}}"
-        domain: "aci_bigip_lab"
+        domain: "POD11-VMM-DOMAIN"
         domain_type: "vmm"
         vm_provider: "vmware"
         encap_mode: "auto"
-        encap: 10
+        encap: 230 
 #      with_items: "{{ epgs }}"
 
     - name: ENSURE EPG IS ASSOCIATED TO CONTRACTS
@@ -84,11 +84,11 @@
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
         epg: "{{providerEPG_name}}"
-        domain: "aci_bigip_lab"
+        domain: "POD11-VMM-DOMAIN"
         domain_type: "vmm"
         vm_provider: "vmware"
         encap_mode: "auto"
-        encap: 20
+        encap: 23
 
     - name: ENSURE EPG IS ASSOCIATED TO CONTRACTS
       aci_epg_to_contract:

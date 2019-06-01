@@ -1,0 +1,16 @@
+<fvTenant dn="uni/tn-{{tenant_name}}" name="{{tenant_name}}">
+<vzFilter name="http-filter">
+    <vzEntry  name="http-e" etherT="ip" prot="tcp"/>
+</vzFilter>
+<vzFilter name="https-filter">
+    <vzEntry  name="https-e" etherT="ip" prot="tcp"/>
+</vzFilter>
+    <vzBrCP ownerTag="" ownerKey="" name="{{contract_name}}" descr="" scope="context" prio="unspecified">
+        <vzSubj name="http" descr="" prio="unspecified" revFltPorts="yes" provMatchT="AtleastOne" consMatchT="AtleastOne">
+            <vzRsSubjFiltAtt tnVzFilterName="http-filter"/>
+        </vzSubj>
+        <vzSubj name="https" descr="" prio="unspecified" revFltPorts="yes" provMatchT="AtleastOne" consMatchT="AtleastOne">
+            <vzRsSubjFiltAtt tnVzFilterName="https-filter"/>
+        </vzSubj>
+    </vzBrCP>
+</fvTenant>

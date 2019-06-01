@@ -1,18 +1,1 @@
-<vnsLDevVip name="bigipeh" rn="lDevVip-bigipeh" isCopy="no" managed="no" svcType="ADC" funcType="GoTo"  devtype="VIRTUAL" contextAware="single-Context" trunking="no" mode="legacy-Mode" >
-
-  <vnsRsALDevToDomP rn="rsALDevToDomP" tDn="uni/vmmp-VMware/dom-virt-VMM-VDS_vCD" >
-  </vnsRsALDevToDomP>
-    <vnsCDev name="BigIP-VE" rn="cDev-BigIP-VE"  vcenterName="virt-VMM-VDS_vCCI" vmName="BIGIP-14.1.0.2-0.0.4.ALL#-scsi" >
-      <vnsRsCDevToCtrlrP rn="rscDevToCtrlrP" tDn="uni/vmmp-VMware/dom-virt-VMM-VDS_vCD/ctrlr-virt-VMM-VDS_vCCI" >
-      </vnsRsCDevToCtrlrP>
-       <vnsCIf name="external" rn="cIf-[external]" vnicName="Network adapter 2" >
-       <vnsRsCIfPathAtt rn="rsCIfPathAtt" tDn="topology/pod-1/paths-102/pathep-[eth1/34]" >
-      </vnsRsCIfPathAtt>
-      </vnsCIf>
-
-       <vnsCIf name="internal" rn="cIf-[internal]" vnicName="Network adapter 3" >
-        <vnsRsCIfPathAtt rn="rsCIfPathAtt" tDn="topology/pod-1/paths-102/pathep-[eth1/34]" >
-         </vnsRsCIfPathAtt>
-       </vnsCIf>
-      </vnsCDev>
-</vnsLDevVip>
+<vnsLDevVip contextAware="single-Context" devtype="VIRTUAL" dn="uni/tn-hhtenant/lDevVip-twisterVE" funcType="GoThrough" isCopy="no" managed="no" mode="legacy-Mode" name="twisterVE" nameAlias="" packageModel="" svcType="ADC" trunking="no"><vnsRsALDevToDomP tDn="uni/vmmp-VMware/dom-POD11-VMM-DOMAIN"/><vnsLIf encap="unknown" name="floatExt" nameAlias=""><vnsRsCIfAttN tDn="uni/tn-hhtenant/lDevVip-twisterVE/cDev-f5_VE/cIf-[external]"/></vnsLIf><vnsCDev devCtxLbl="" name="f5_VE" nameAlias="" vcenterName="" vmName=""><vnsCIf name="external" nameAlias="" vnicName=""><vnsRsCIfPathAtt tDn="topology/pod-1/protpaths-101-102/pathep-[Switch101-102_1-BL1_PolGrp]"/></vnsCIf><vnsCCredSecret name="password" nameAlias=""/><vnsCCred name="username" nameAlias="" value="a"/></vnsCDev></vnsLDevVip>

@@ -1,58 +1,66 @@
-# Use eh for all the values and 22 to change numbers for vlans external internal and second octect of SELF-IP
+# Use hh for all the values and 22 to change numbers for vlans external internal and second octect of SELF-IP
 # student should run sed a couple times
 ## YY allowed valudes frpom: 11 to 24
-tenant: "ehtenant"
-tenant_name: "ehtenant"
+tenant: "hhtenant"
+tenant_name: "hhtenant"
 
-vrf_name: "ehfinanceVRF"
+vrf_name: "hhfinanceVRF"
 
-consumerBD_name: "ehexternalBD"
-providerBD_name: "ehinternalBD"
+consumerBD_name: "hhexternalBD"
+providerBD_name: "hhinternalBD"
 
-appProfile_name: "AP_eh"
-consumerEPG_name: "ehexternalEPG"
-providerEPG_name: "ehinternalEPG"
+appProfile_name: "AP_hh"
+consumerEPG_name: "hhexternalEPG"
+providerEPG_name: "hhinternalEPG"
 
-logicalDeviceCluster_name: "bigipeh"
+logicalDeviceCluster_name: "bigiphh"
 
 device1_interface1_connectionPath: "pod-1/paths-102/pathep-[eth1/34]"
 device1_interface2_connectionPath: ""
 
 device2_interface1_connectionPath: "pod-1/paths-103/pathep-[eth1/34]"
 device2_interface2_connectionPath: ""
-
-SGtemplate_name: "ehUnManaged-2ARM-ServiceGraphTemplate"
-contract_name: "ehContract-bigipFin"
-physical_domain_name: "ehServiceUnmanagedPhy"
-# 
+###
+## Virtual Env
+#domain
+#domain type
+#encap_ext
+#encap_int
+#
+SGtemplate_name: "hhUnManaged-2ARM-ServiceGraphTemplate"
+contract_name: "hhContract-bigipFin"
+physical_domain_name: "hhServiceUnmanagedPhy"
+# access
 username: "admin"
 password: "ciscopsdt"
 user: "admin"
 pass: "f5DEMOs4u12345"
-
+# Net
+gateway_bd_external: "10.230.10.1"
+gateway_bd_internal: "10.23.20.1"
 #########
 
-consumer_vlan_name: "ehExternal_VLAN"
+consumer_vlan_name: "hhExternal_VLAN"
 consumer_vlan: "220"
 
-provider_vlan_name: "ehInternal_VLAN"
-provider_vlan: "022"
+provider_vlan_name: "hhInternal_VLAN"
+provider_vlan: "22"
 
 vip_port: "80"
 vip_ip: "10.220.10.100"
 
 pool_members:
 - port: "80"
-  host: "10.22.20.11"
+  host: "10.23.20.11"
 - port: "80"
-  host: "10.22.20.12"
+  host: "10.23.20.12"
 
 bigipVE_selfip_information:
-- name: 'ehExternal-SelfIP'
-  address: '10.220.10.240'
+- name: 'hhExternal-SelfIP'
+  address: '10.230.10.240'
   netmask: '255.255.255.0'
-  vlan: "ehExternal_VLAN"
-- name: 'ehInternal-SelfIP'
-  address: '10.022.20.240'
+  vlan: "hhExternal_VLAN"
+- name: 'hhInternal-SelfIP'
+  address: '10.23.20.240'
   netmask: '255.255.255.0'
-  vlan: 'ehInternal_VLAN'
+  vlan: 'hhInternal_VLAN'   

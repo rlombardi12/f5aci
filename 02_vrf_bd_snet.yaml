@@ -39,8 +39,8 @@
         validate_certs: False
         tenant: "{{ tenant }}"
         bd: "{{consumerBD_name}}"
-        gateway: "10.1.10.1"
-        mask: 24
+        gateway: "{{ gateway_bd_external }}"
+        mask: 16
         description: "External Subnet"
 
     - name: CREATE INTERNAL BRIDGE DOMAIN
@@ -64,6 +64,6 @@
         validate_certs: False
         tenant: "{{ tenant }}"
         bd: "{{providerBD_name}}"
-        gateway: "10.1.20.1"
-        mask: 24
+        gateway: "{{gateway_bd_internal }}"
+        mask: 16
         description: "Internal Subnet" 
