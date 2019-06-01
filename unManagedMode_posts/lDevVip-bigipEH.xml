@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><imdata totalCount="1"><vnsLDevVip annotation="" contextAware="single-Context" devtype="PHYSICAL" dn="uni/tn-EHtenant/lDevVip-bigipEH" funcType="GoTo" isCopy="no" managed="no" mode="legacy-Mode" name="bigipEH" nameAlias="" packageModel="" promMode="no" svcType="ADC" trunking="no"/></imdata><polUni
+rn="uni"
+>
+^ <fvTenant
+name="EHtenant"
+rn="tn-EHtenant"
+descr="Lab tenant"
+>
+^ <vnsLDevVip
+name="bigipvirtual"
+rn="lDevVip-bigipvirtual"
+isCopy="no"
+managed="no"
+svcType="ADC"
+funcType="GoTo"
+promMode="no"
+devtype="VIRTUAL"
+contextAware="single-Context"
+trunking="no"
+mode="legacy-Mode"
+>
+^ <vnsRsALDevToDomP
+rn="rsALDevToDomP"
+switchingMode="native"
+tDn="uni/vmmp-VMware/dom-FMS-VMM-VDS_vCD"
+>
+</vnsRsALDevToDomP>
+^ <vnsCDev
+name="BigIP-VE"
+rn="cDev-BigIP-VE"
+isCloneOperation="no"
+isTemplate="no"
+vcenterName="FMS-VMM-VDS_vCCI"
+vmName="BIGIP-14.1.0.2-0.0.4.ALL-scsi"
+cloneCount="0"
+>
+^ <vnsRsCDevToCtrlrP
+rn="rscDevToCtrlrP"
+tDn="uni/vmmp-VMware/dom-FMS-VMM-VDS_vCD/ctrlr-FMS-VMM-VDS_vCCI"
+>
+</vnsRsCDevToCtrlrP>
+^ <vnsCIf
+name="external"
+rn="cIf-[external]"
+vnicName="Network adapter 2"
+>
+^ <vnsRsCIfPathAtt
+rn="rsCIfPathAtt"
+tDn="topology/pod-1/protpaths-201-202/extprotpaths-101-101/pathep-[FMS_N..."
+>
+</vnsRsCIfPathAtt>
+</vnsCIf>
+^ <vnsCIf
+name="internal"
+rn="cIf-[internal]"
+vnicName="Network adapter 3"
+>
+^ <vnsRsCIfPathAtt
+rn="rsCIfPathAtt"
+tDn="topology/pod-1/protpaths-201-202/extprotpaths-101-101/pathep-[FMS_N..."
+>
+</vnsRsCIfPathAtt>
+</vnsCIf>
+</vnsCDev>
+</vnsLDevVip>
+</fvTenant>
+</polUni>
