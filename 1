@@ -1,0 +1,18 @@
+<vnsLDevVip name="bigipeh" rn="lDevVip-bigipeh" isCopy="no" managed="no" svcType="ADC" funcType="GoTo"  devtype="VIRTUAL" contextAware="single-Context" trunking="no" mode="legacy-Mode" >
+
+  <vnsRsALDevToDomP rn="rsALDevToDomP" tDn="uni/vmmp-VMware/dom-FMS-VMM-VDS_vCD" >
+  </vnsRsALDevToDomP>
+    <vnsCDev name="BigIP-VE" rn="cDev-BigIP-VE"  vcenterName="FMS-VMM-VDS_vCCI" vmName="BIGIP-14.1.0.2-0.0.4.ALL#-scsi" >
+      <vnsRsCDevToCtrlrP rn="rscDevToCtrlrP" tDn="uni/vmmp-VMware/dom-FMS-VMM-VDS_vCD/ctrlr-FMS-VMM-VDS_vCCI" >
+      </vnsRsCDevToCtrlrP>
+       <vnsCIf name="external" rn="cIf-[external]" vnicName="Network adapter 2" >
+       <vnsRsCIfPathAtt rn="rsCIfPathAtt" tDn="topology/{{device1_interface1_connectionPath}}" >
+      </vnsRsCIfPathAtt>
+      </vnsCIf>
+
+       <vnsCIf name="internal" rn="cIf-[internal]" vnicName="Network adapter 3" >
+        <vnsRsCIfPathAtt rn="rsCIfPathAtt" tDn="topology/pod-1/protpaths-201-202/extprotpaths-101-101/pathep-[FMS_N..." >
+         </vnsRsCIfPathAtt>
+       </vnsCIf>
+      </vnsCDev>
+</vnsLDevVip>
