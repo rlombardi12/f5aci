@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-# Use hh for all the values and 22 to change numbers for vlans external internal and second octect of SELF-IP
-# student should run sed a couple times
-## YY allowed valudes frpom: 11 to 24
-tenant: "hhtenant"
-tenant_name: "hhtenant"
-
-vrf_name: "hhfinanceVRF"
-
-consumerBD_name: "hhexternalBD"
-providerBD_name: "hhinternalBD"
-
-appProfile_name: "AP_hh"
-consumerEPG_name: "hhexternalEPG"
-providerEPG_name: "hhinternalEPG"
-
-logicalDeviceCluster_name: "bigiphh"
-=======
 # Use xx for all the values and 22 to change numbers for vlans external internal and second octect of SELF-IP
 # student should run sed a couple times
 ## YY allowed valudes frpom: 11 to 24
