@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Use hh for all the values and 22 to change numbers for vlans external internal and second octect of SELF-IP
 # student should run sed a couple times
 ## YY allowed valudes frpom: 11 to 24
@@ -14,12 +15,31 @@ consumerEPG_name: "hhexternalEPG"
 providerEPG_name: "hhinternalEPG"
 
 logicalDeviceCluster_name: "bigiphh"
+=======
+# Use xx for all the values and 22 to change numbers for vlans external internal and second octect of SELF-IP
+# student should run sed a couple times
+## YY allowed valudes frpom: 11 to 24
+tenant: "xxtenant"
+tenant_name: "xxtenant"
+
+vrf_name: "xxfinanceVRF"
+
+consumerBD_name: "xxexternalBD"
+providerBD_name: "xxinternalBD"
+
+appProfile_name: "AP_xx"
+consumerEPG_name: "xxexternalEPG"
+providerEPG_name: "xxinternalEPG"
+
+logicalDeviceCluster_name: "bigipxx"
+>>>>>>> 05ac25e9449fdcc3319fa76cf78652d88aa2f9ff
 
 device1_interface1_connectionPath: "pod-1/paths-102/pathep-[eth1/34]"
 device1_interface2_connectionPath: ""
 
 device2_interface1_connectionPath: "pod-1/paths-103/pathep-[eth1/34]"
 device2_interface2_connectionPath: ""
+<<<<<<< HEAD
 ###
 ## Virtual Env
 #domain
@@ -45,12 +65,32 @@ consumer_vlan: "220"
 
 provider_vlan_name: "hhInternal_VLAN"
 provider_vlan: "22"
+=======
+
+SGtemplate_name: "xxUnManaged-2ARM-ServiceGraphTemplate"
+contract_name: "xxContract-bigipFin"
+physical_domain_name: "xxServiceUnmanagedPhy"
+# 
+username: "admin"
+password: "ciscopsdt"
+user: "TBD"
+pass: "TBD"
+
+#########
+
+consumer_vlan_name: "xxExternal_VLAN"
+consumer_vlan: "yy0"
+
+provider_vlan_name: "xxInternal_VLAN"
+provider_vlan: "0yy"
+>>>>>>> 05ac25e9449fdcc3319fa76cf78652d88aa2f9ff
 
 vip_port: "80"
-vip_ip: "10.220.10.100"
+vip_ip: "10.yy0.10.100"
 
 pool_members:
 - port: "80"
+<<<<<<< HEAD
   host: "10.23.20.11"
 - port: "80"
   host: "10.23.20.12"
@@ -64,3 +104,18 @@ bigipVE_selfip_information:
   address: '10.23.20.240'
   netmask: '255.255.255.0'
   vlan: 'hhInternal_VLAN'   
+=======
+  host: "10.yy.20.11"
+- port: "80"
+  host: "10.yy.20.12"
+
+bigipVE_selfip_information:
+- name: 'xxExternal-SelfIP'
+  address: '10.yy0.10.240'
+  netmask: '255.255.255.0'
+  vlan: "xxExternal_VLAN"
+- name: 'xxInternal-SelfIP'
+  address: '10.0yy.20.240'
+  netmask: '255.255.255.0'
+  vlan: 'xxInternal_VLAN'
+>>>>>>> 05ac25e9449fdcc3319fa76cf78652d88aa2f9ff
