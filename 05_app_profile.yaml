@@ -16,7 +16,7 @@
         validate_certs: False
         tenant: "{{ tenant }}"
         ap: "{{ appProfile_name }}"
-        descr: "LAB App Profile"
+        descr: "Finance App Profile"
 
     - name: CREATE EXTERNAL EPG
       aci_epg:
@@ -45,8 +45,7 @@
         domain_type: "vmm"
         vm_provider: "vmware"
         encap_mode: "auto"
-        encap: 230 
-#      with_items: "{{ epgs }}"
+        encap: "{{ ext_encap }}" 
 
     - name: ENSURE EPG IS ASSOCIATED TO CONTRACTS
       aci_epg_to_contract:
@@ -88,7 +87,7 @@
         domain_type: "vmm"
         vm_provider: "vmware"
         encap_mode: "auto"
-        encap: 23
+        encap: "{{int_encap}}"
 
     - name: ENSURE EPG IS ASSOCIATED TO CONTRACTS
       aci_epg_to_contract:

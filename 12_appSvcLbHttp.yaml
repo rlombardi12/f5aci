@@ -18,7 +18,6 @@
          enabled_vlans: 
           - "{{tenant_name}}_{{consumer_vlan_name}}"
           - "{{tenant_name}}_{{provider_vlan_name}}"
-         #profiles_both: "http"
          pool: "{{tenant_name}}_http-pool"
          snat: "automap"
          validate_certs: False

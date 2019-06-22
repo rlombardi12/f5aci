@@ -8,12 +8,12 @@
 
   tasks:
 
-  - name: Create XML POSTS from templates
+  - name: CREATE XML POSTS FROM TEMPLATE
     template: src={{ item.src }} dest={{ item.dest }}
     with_items:
       - { src: 'unManagedMode_posts/deviceSelectionPolicy.j2',     dest: 'unManagedMode_posts/deviceSelectionPolicy.xml'}
 
-  - name: Create device selection policy
+  - name: CREATE DEVICE SELECTION POLICY
     aci_rest:
       action: "post"
       uri: "/api/node/mo/uni/tn-{{tenant_name}}.xml"

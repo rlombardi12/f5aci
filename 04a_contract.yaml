@@ -7,13 +7,12 @@
     - variable_file.yaml
 
   tasks:
-
-  - name: Create XML POSTS from templates
+  - name: CREATE XML POSTS FROM TEMPLATES
     template: src={{ item.src }} dest={{ item.dest }}
     with_items:
       - { src: 'unManagedMode_posts/contract00.j2',                  dest: 'unManagedMode_posts/contract00.xml' }
 
-  - name: Create contract
+  - name: CREATE CONTRACT
     aci_rest:
       action: "post"
       uri: "/api/node/mo/uni/tn-{{ tenant }}.xml"

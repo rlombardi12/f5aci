@@ -8,13 +8,13 @@
 
   tasks:
 
-  - name: Create XML POSTS from templates
+  - name: CREATE XML POSTS FROM TEMPLATES
     template: src={{ item.src }} dest={{ item.dest }}
     with_items:
       - { src: 'unManagedMode_posts/apply_graph.j2',               dest: 'unManagedMode_posts/apply_graph.xml'}
 
 
-  - name: Assign service graph template to contract
+  - name: ASSIGN SERVICE GRAPH TEMPLATE TO CONTRACT
     aci_rest:
       action: "post"
       uri: "/api/node/mo/uni/tn-{{tenant_name}}.xml"

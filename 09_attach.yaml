@@ -8,13 +8,13 @@
 
   tasks:
 
-  - name: Create XML POSTS from templates
+  - name: CREATE XML POSTS FROM TEMPLATES
     template: src={{ item.src }} dest={{ item.dest }}
     with_items:
       - { src: 'unManagedMode_posts/attach_cons_prov_contract.j2', dest: 'unManagedMode_posts/attach_cons_prov_contract.xml'}
 
 
-  - name: Apply consumed and provided contracts to EndPoint Group
+  - name: APPLY CONTRACTS TO ENDPOINT GROUP
     aci_rest:
       action: "post"
       uri: "/api/node/mo/uni/tn-{{tenant_name}}.xml"
