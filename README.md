@@ -1,6 +1,6 @@
 <h1 style="color: #5e9ca0;"><span style="color: #000000;">Automating Application Services using Ansible on Cisco ACI</span></h1>
 <h2 style="color: #2e6c80;"><span style="color: #000000;">Introduction&nbsp;</span></h2>
-<p>Welcome to f5LATAM's GitHub repository automation of f5 in ACI fabrics. All of the templates in this repository have been developed by F5 Networks engineers. The ansible playbooks contain presented here are not oficially supported by F5 Networks.</p>
+<p>Welcome to f5LATAM's GitHub repository for automation of f5 in ACI fabrics. All of the templates in this repository have been developed by F5 Networks engineers. The ansible playbooks presented here are not oficially supported by F5 Networks.</p>
 <p>&nbsp;</p>
 <h2 style="color: #2e6c80;"><span style="color: #000000;">How to use:</span></h2>
 <p>on Prompt:</p>
