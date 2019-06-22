@@ -1,8 +1,14 @@
+Y, I AM THE SOURCE EDITOR! #########-->
 <h1 style="color: #5e9ca0;"><span style="color: #000000;">Automating Application Services using Ansible on Cisco ACI</span></h1>
 <h2 style="color: #2e6c80;"><span style="color: #000000;">Introduction&nbsp;</span></h2>
 <p>Welcome to f5LATAM's GitHub repository automation of f5 in ACI fabrics. All of the templates in this repository have been developed by F5 Networks engineers. The ansible playbooks contain presented here are not oficially supported by F5 Networks.</p>
 <p>&nbsp;</p>
 <h2 style="color: #2e6c80;"><span style="color: #000000;">How to use:</span></h2>
+<p>on Prompt:</p>
+<p><span style="color: #0000ff;">ansible-playbook &lt;playbook&gt; -i inventory&nbsp;</span></p>
+<p>* Adapt inventory file with APIC and BIG-IP IP addresses</p>
+<p>** Change credentials on variable_file.yaml</p>
+<h2>Notes&nbsp;</h2>
 <p>&nbsp;- Playbooks related to ACI are numbered from 01 to 09. BIG-IP related playbooks go from 10 to 12</p>
 <p>- When no modules are present, we generated REST requests by using templates on folder uMannagedMode_posts</p>
 <p>- You'll need an ansible server to run these playbooks and f5 SDK components for BIG-IP. For more information to prepare you're ansible server, have a look at:&nbsp;<a href="https://github.com/hheitor/f5aci">https://github.com/hheitor/f5aci</a></p>
@@ -19,5 +25,3 @@
 <p><strong>&nbsp;</strong></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-
-
