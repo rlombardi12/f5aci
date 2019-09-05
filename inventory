@@ -1,13 +1,13 @@
 [apic:vars]
-username=admin
-password=ciscopsdt
+username=
+password=
 ansible_python_interpreter="/usr/bin/env python"
 
 [apic]
 sandboxapicdc.cisco.com
 
 [bigips]
-#10.1.1.245 ravello
+#10.1.1.245 ra
 #10.0.1.4
-35.202.21.134
+<public ip>
 
