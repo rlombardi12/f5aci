@@ -24,11 +24,15 @@ device2_interface2_connectionPath: ""
 SGtemplate_name: "xxUnManaged-2ARM-ServiceGraphTemplate"
 contract_name: "xxContract-bigipFin"
 physical_domain_name: "xxServiceUnmanagedPhy"
-#credentials
-username: ""
-password: ""
-user: ""
-pass: ""
+###############
+# credentials #
+###############
+## apic ##
+username: "admin"
+password: "ciscopsdt"
+## bigip ##
+user: "admin"
+pass: "f5DEMOs4u"
 
 ##############
 # networking #
