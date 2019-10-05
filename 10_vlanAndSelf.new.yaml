@@ -46,7 +46,7 @@
       vlan: "{{tenant_name}}_{{consumer_vlan_name}}"
     delegate_to: localhost
 
-  - name: CONFIGURING CONSUMER SELF-IP
+- name: CONFIGURING CONSUMER SELF-IP
     bigip_selfip:
       server: "{{inventory_hostname}}"
       user: "{{user}}"
