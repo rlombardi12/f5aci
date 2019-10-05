@@ -47,26 +47,24 @@ provider_vlan: "0yy"
 ##############
 # bigip vars # 
 ##############
+##############
+# bigip vars # 
+##############
 
 vip_port: "80"
-vip_ip: "10.yy0.10.100"
+vip_ip: "10.10.10.100"
 
 pool_members:
 - port: "80"
-  host: "10.yy.20.11"
+  host: "10.1.20.11"
 - port: "80"
-  host: "10.yy.20.12"
+  host: "10.1.20.12"
 
-bigipVE_selfip_information:
-- name: 'xxExternal-SelfIP'
-  address: '10.yy0.10.240'
-  netmask: '255.255.255.0'
-  vlan: "xxExternal_VLAN"
-- name: 'xxInternal-SelfIP'
-  address: '10.yy.20.240'
-  netmask: '255.255.255.0'
-  vlan: 'xxInternal_VLAN'   
-  host: "10.yy.20.11"
-- port: "80"
-  host: "10.yy.20.12"
+sipExname: "{{tenant_name}}_{{consumer_vlan_name}}" 
+sipExaddr: '10.10.10.240'
+sipExnmask: '255.255.255.0'
+sipINTname: "{{tenant_name}}_{{provider_vlan_name}}"
+sipINTaddr: '10.1.20.240'
+sipINTnmask: '255.255.255.0'
+
  
