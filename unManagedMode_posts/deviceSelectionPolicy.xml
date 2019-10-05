@@ -1,11 +1,11 @@
-<vnsLDevCtx nodeNameOrLbl="N1" name="" graphNameOrLbl="ehUnManaged-2ARM-ServiceGraphTemplate" dn="uni/tn-ehtenant/ldevCtx-c-ehContract-bigipFin-g-ehUnManaged-2ARM-ServiceGraphTemplate-n-N1" descr="" ctrctNameOrLbl="ehContract-bigipFin">
-   <vnsRsLDevCtxToLDev tDn="uni/tn-ehtenant/lDevVip-bigipeh" />
+<vnsLDevCtx nodeNameOrLbl="N1" name="" graphNameOrLbl="heUnManaged-2ARM-ServiceGraphTemplate" dn="uni/tn-hetenant/ldevCtx-c-heContract-bigipFin-g-heUnManaged-2ARM-ServiceGraphTemplate-n-N1" descr="" ctrctNameOrLbl="heContract-bigipFin">
+   <vnsRsLDevCtxToLDev tDn="uni/tn-hetenant/lDevVip-bigiphe" />
    <vnsLIfCtx name="" descr="" permitLog="no" connNameOrLbl="provider">
-      <vnsRsLIfCtxToBD tDn="uni/tn-ehtenant/BD-ehinternalBD" />
-      <vnsRsLIfCtxToLIf tDn="uni/tn-ehtenant/lDevVip-bigipeh/lIf-Internal" />
+      <vnsRsLIfCtxToBD tDn="uni/tn-hetenant/BD-heinternalBD" />
+      <vnsRsLIfCtxToLIf tDn="uni/tn-hetenant/lDevVip-bigiphe/lIf-Internal" />
    </vnsLIfCtx>
    <vnsLIfCtx name="" descr="" permitLog="no" connNameOrLbl="consumer">
-      <vnsRsLIfCtxToBD tDn="uni/tn-ehtenant/BD-ehexternalBD" />
-      <vnsRsLIfCtxToLIf tDn="uni/tn-ehtenant/lDevVip-bigipeh/lIf-External" />
+      <vnsRsLIfCtxToBD tDn="uni/tn-hetenant/BD-heexternalBD" />
+      <vnsRsLIfCtxToLIf tDn="uni/tn-hetenant/lDevVip-bigiphe/lIf-External" />
    </vnsLIfCtx>
 </vnsLDevCtx>

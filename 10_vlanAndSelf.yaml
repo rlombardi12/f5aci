@@ -34,16 +34,27 @@
       validate_certs: False
     delegate_to: localhost
 
-  - name: CONFIGURING SELF-IP
+  - name: CONFIGURING PROVIDER SELF-IP
     bigip_selfip:
       server: "{{inventory_hostname}}"
       user: "{{ user }}"
       password: "{{ pass }}"
       validate_certs: False
-      name: "{{tenant_name}}_{{item.name}}"
-      address: "{{item.address}}"
-      netmask: "{{item.netmask}}"
-      vlan: "{{tenant_name}}_{{item.vlan}}"
-    with_items: "{{ bigipVE_selfip_information }}"
+      name: "{{sipExname}}"
+      address: "{{sipExaddr}}"
+      netmask: "{{sipExnmask}}"
+      vlan: "{{tenant_name}}_{{consumer_vlan_name}}"
     delegate_to: localhost
+
+  - name: CONFIGURING CONSUMER SELF-IP
+    bigip_selfip:
+      server: "{{inventory_hostname}}"
+      user: '{{user}}'
+      password: "{{pass}}"
+      validate_certs: "false"
+      name: "{{sipINTname}}"     
+      address: "{{sipINTaddr}}"
+      netmask: "{{sipINTnmask}}"
+      vlan: "{{tenant_name}}_{{provider_vlan_name}}"
+
 

@@ -1,8 +1,8 @@
-<fvTenant dn="uni/tn-ehtenant" name="ehtenant">
-   <vzBrCP descr="" dn="uni/tn-ehtenant/brc-ehContract-bigipFin" name="ehContract-bigipFin" ownerKey="" ownerTag="" prio="unspecified" scope="context" targetDscp="unspecified">
+<fvTenant dn="uni/tn-hetenant" name="hetenant">
+   <vzBrCP descr="" dn="uni/tn-hetenant/brc-heContract-bigipFin" name="heContract-bigipFin" ownerKey="" ownerTag="" prio="unspecified" scope="context" targetDscp="unspecified">
       <vzSubj consMatchT="AtleastOne" descr="" name="http" prio="unspecified" provMatchT="AtleastOne" revFltPorts="yes" targetDscp="unspecified">
          <vzRsSubjFiltAtt directives="" tnVzFilterName="default" />
-         <vzRsSubjGraphAtt tnVnsAbsGraphName="ehUnManaged-2ARM-ServiceGraphTemplate"/>
+         <vzRsSubjGraphAtt tnVnsAbsGraphName="heUnManaged-2ARM-ServiceGraphTemplate"/>
       </vzSubj>
    </vzBrCP>
 </fvTenant>

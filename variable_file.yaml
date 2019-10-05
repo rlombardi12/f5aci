@@ -1,16 +1,16 @@
-tenant: "xxtenant"
-tenant_name: "xxtenant"
+tenant: "hetenant"
+tenant_name: "hetenant"
 
-vrf_name: "xxfinanceVRF"
+vrf_name: "hefinanceVRF"
 
-consumerBD_name: "xxexternalBD"
-providerBD_name: "xxinternalBD"
+consumerBD_name: "heexternalBD"
+providerBD_name: "heinternalBD"
 
-appProfile_name: "finApp_xx"
-consumerEPG_name: "xxexternalEPG"
-providerEPG_name: "xxinternalEPG"
+appProfile_name: "AP_he"
+consumerEPG_name: "heexternalEPG"
+providerEPG_name: "heinternalEPG"
 
-logicalDeviceCluster_name: "bigipxx"
+logicalDeviceCluster_name: "bigiphe"
 #### + this will change depending on ACI environmentv + #####
 
 device1_interface1_connectionPath: "pod-1/paths-102/pathep-[eth1/34]"
@@ -21,16 +21,12 @@ device2_interface2_connectionPath: ""
 
 #######################################################################
 
-SGtemplate_name: "xxUnManaged-2ARM-ServiceGraphTemplate"
-contract_name: "xxContract-bigipFin"
-physical_domain_name: "xxServiceUnmanagedPhy"
-###############
-# credentials #
-###############
-## apic ##
+SGtemplate_name: "heUnManaged-2ARM-ServiceGraphTemplate"
+contract_name: "heContract-bigipFin"
+physical_domain_name: "heServiceUnmanagedPhy"
+#credentials
 username: "admin"
 password: "ciscopsdt"
-## bigip ##
 user: "admin"
 pass: "f5DEMOs4u"
 
@@ -38,37 +34,34 @@ pass: "f5DEMOs4u"
 # networking #
 ##############
 
-gateway_bd_external: "10.yy0.10.1"
-gateway_bd_internal: "10.yy.20.1"
+gateway_bd_external: "10.10.10.1"
+gateway_bd_internal: "10.1.20.1"
 
-ext_encap: "yy0"
-int_encap: "yy"
-consumer_vlan_name: "xxExternal_VLAN"
-consumer_vlan: "yy0"
+ext_encap: "10"
+int_encap: "1"
+consumer_vlan_name: "heExternal_VLAN"
+consumer_vlan: "10"
 
-provider_vlan_name: "xxInternal_VLAN"
-provider_vlan: "yy"
-##############
-# bigip vars # 
-##############
+provider_vlan_name: "heInternal_VLAN"
+provider_vlan: "1"
 ##############
 # bigip vars # 
 ##############
 
 vip_port: "80"
-vip_ip: "10.yy0.10.100"
+vip_ip: "10.10.10.100"
 
 pool_members:
 - port: "80"
-  host: "10.yy.20.11"
+  host: "10.1.20.11"
 - port: "80"
-  host: "10.yy.20.12"
+  host: "10.1.20.12"
 
 sipExname: "{{tenant_name}}_{{consumer_vlan_name}}" 
-sipExaddr: '10.yy0.10.240'
+sipExaddr: '10.10.10.240'
 sipExnmask: '255.255.255.0'
 sipINTname: "{{tenant_name}}_{{provider_vlan_name}}"
-sipINTaddr: '10.yy.20.240'
+sipINTaddr: '10.1.20.240'
 sipINTnmask: '255.255.255.0'
 
- 
+

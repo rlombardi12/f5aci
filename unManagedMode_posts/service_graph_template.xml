@@ -1,4 +1,4 @@
-<vnsAbsGraph uiTemplateType="UNSPECIFIED" ownerTag="" ownerKey="" name="ehUnManaged-2ARM-ServiceGraphTemplate" dn="uni/tn-ehtenant/AbsGraph-ehUnManaged-2ARM-ServiceGraphTemplate" descr="">
+<vnsAbsGraph uiTemplateType="UNSPECIFIED" ownerTag="" ownerKey="" name="heUnManaged-2ARM-ServiceGraphTemplate" dn="uni/tn-hetenant/AbsGraph-heUnManaged-2ARM-ServiceGraphTemplate" descr="">
    <vnsAbsTermNodeCon ownerTag="" ownerKey="" name="T1" descr="">
       <vnsAbsTermConn ownerTag="" ownerKey="" name="1" descr="" attNotify="no" />
       <vnsInTerm name="" descr="" />
@@ -10,16 +10,16 @@
       <vnsOutTerm name="" descr="" />
    </vnsAbsTermNodeProv>
    <vnsAbsConnection ownerTag="" ownerKey="" name="C1" descr="" unicastRoute="yes" directConnect="no" connType="external" connDir="provider" adjType="L2">
-      <vnsRsAbsConnectionConns tDn="uni/tn-ehtenant/AbsGraph-ehUnManaged-2ARM-ServiceGraphTemplate/AbsNode-N1/AbsFConn-consumer" />
-      <vnsRsAbsConnectionConns tDn="uni/tn-ehtenant/AbsGraph-ehUnManaged-2ARM-ServiceGraphTemplate/AbsTermNodeCon-T1/AbsTConn" />
+      <vnsRsAbsConnectionConns tDn="uni/tn-hetenant/AbsGraph-heUnManaged-2ARM-ServiceGraphTemplate/AbsNode-N1/AbsFConn-consumer" />
+      <vnsRsAbsConnectionConns tDn="uni/tn-hetenant/AbsGraph-heUnManaged-2ARM-ServiceGraphTemplate/AbsTermNodeCon-T1/AbsTConn" />
    </vnsAbsConnection>
    <vnsAbsConnection ownerTag="" ownerKey="" name="C2" descr="" unicastRoute="yes" directConnect="no" connType="external" connDir="provider" adjType="L2">
-      <vnsRsAbsConnectionConns tDn="uni/tn-ehtenant/AbsGraph-ehUnManaged-2ARM-ServiceGraphTemplate/AbsTermNodeProv-T2/AbsTConn" />
-      <vnsRsAbsConnectionConns tDn="uni/tn-ehtenant/AbsGraph-ehUnManaged-2ARM-ServiceGraphTemplate/AbsNode-N1/AbsFConn-provider" />
+      <vnsRsAbsConnectionConns tDn="uni/tn-hetenant/AbsGraph-heUnManaged-2ARM-ServiceGraphTemplate/AbsTermNodeProv-T2/AbsTConn" />
+      <vnsRsAbsConnectionConns tDn="uni/tn-hetenant/AbsGraph-heUnManaged-2ARM-ServiceGraphTemplate/AbsNode-N1/AbsFConn-provider" />
    </vnsAbsConnection>
    <vnsAbsNode ownerTag="" ownerKey="" name="N1" descr="" shareEncap="no" sequenceNumber="0" routingMode="unspecified" managed="no" isCopy="no" funcType="GoTo" funcTemplateType="ADC_TWO_ARM">
       <vnsAbsFuncConn ownerTag="" ownerKey="" name="consumer" descr="" attNotify="no" />
       <vnsAbsFuncConn ownerTag="" ownerKey="" name="provider" descr="" attNotify="no" />
-      <vnsRsNodeToLDev tDn="uni/tn-ehtenant/lDevVip-bigipeh" />
+      <vnsRsNodeToLDev tDn="uni/tn-hetenant/lDevVip-bigiphe" />
    </vnsAbsNode>
 </vnsAbsGraph>
