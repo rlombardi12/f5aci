@@ -6,7 +6,7 @@ vrf_name: "xxfinanceVRF"
 consumerBD_name: "xxexternalBD"
 providerBD_name: "xxinternalBD"
 
-appProfile_name: "AP_he"
+appProfile_name: "APP_xx"
 consumerEPG_name: "xxexternalEPG"
 providerEPG_name: "xxinternalEPG"
 
