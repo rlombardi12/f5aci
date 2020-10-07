@@ -78,4 +78,4 @@ RUN locale-gen en_US.UTF-8
 # Install az CLI 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ENV container=docker
-WORKDIR /root/axi
+WORKDIR /root/aci
