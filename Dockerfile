@@ -69,7 +69,7 @@ RUN apt-get install -y software-properties-common
 RUN apt-add-repository --yes --update ppa:ansible/ansible
 RUN apt-get -y install ansible
 # added dependencies when using XML & json for ACI labssince we use some cool request in aci playbooks
-RUN pip install f5-sdk bigsuds netaddr objectpath isoparser lxml xmljson deepdiff 'ansible[azure]'
+RUN pip install f5-sdk bigsuds netaddr objectpath isoparser lxml xmljson deepdiff 'ansible[aci]'
 #
 RUN rm /etc/apt/apt.conf.d/docker-clean
 # RUN mkdir /etc/ansible/
