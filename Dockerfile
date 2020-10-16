@@ -12,9 +12,19 @@ RUN zypper --non-interactive install \
     sudo \
     git \ 
     wget \
-    vi 
-
-# ansible & F5 dependencies
+    vi \
+    libxml2-devel \
+    glibc-devel \
+    libxml2-devel \
+    linux-glibc-devel \
+    ncurses-devel \
+    readline-devel \
+    tack \
+    xz-devel \
+    zlib-devel \
+    libxslt-devel    
+      
+ # ansible & F5 dependencies
 RUN zypper  --non-interactive in ansible
 # added dependencies when using XML & json for ACI labssince we use some cool request in aci playbooks
 RUN pip install  f5-sdk bigsuds netaddr objectpath isoparser lxml xmljson deepdiff 'ansible[aci]'
