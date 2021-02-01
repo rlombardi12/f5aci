@@ -48,6 +48,8 @@ provider_vlan: "yy"
 # bigip vars # 
 ##############
 
+server: "YOU BIGIP MGMT IP"
+
 vip_port: "80"
 vip_ip: "10.1.yy0.100"
 
