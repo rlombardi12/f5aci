@@ -27,8 +27,8 @@ physical_domain_name: "xxServiceUnmanagedPhy"
 #credentials
 username: "admin"
 password: "ciscopsdt"
-user: "admin"
-pass: "f5DEMOs4u"
+user: "YOUR BIGIP USER"
+pass: "YOUR BIGIP PASS"
 
 ##############
 # networking #
