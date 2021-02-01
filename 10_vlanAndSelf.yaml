@@ -1,9 +1,19 @@
 - name: CONFIGURING VLAN AND SELF-IP
-  hosts: bigips
+  hosts: all
   connection: local
   gather_facts: false
+  vars:
+   ansible_python_interpreter: /usr/bin/python3
+   gather_facts: false
+   provider:
+     password: "{{pass}}"
+     server: "{{server}}"
+     user: "{{user}}"
+     validate_certs: no
+     server_port: 443
 
-  vars_files:
+ 
+vars_files:
     - variable_file.yaml
 # este se tiene que revisar porque al pareecr los valores de las VALN estan al reves
 #+ pero asi funcion :/
@@ -12,49 +22,36 @@
 
   - name: ADDING PROVIDER VLAN
     bigip_vlan:
-      server: "{{inventory_hostname}}"
-      user: "{{ user }}"
-      password: "{{ pass }}"
+      provider: "{{ provider }}"
       name: "{{tenant_name}}_{{consumer_vlan_name}}"
       tag: "{{consumer_vlan}}"
       tagged_interfaces:
-      - "1.1"
-      validate_certs: False
-    delegate_to: localhost
+       - "1.1"
 
   - name: ADDING CONSUMER VLAN
     bigip_vlan:
-      server: "{{inventory_hostname}}"
-      user: "{{ user }}"
-      password: "{{ pass }}"
+      provider: "{{ provider }}"
       name: "{{tenant_name}}_{{provider_vlan_name}}"
       tag: "{{provider_vlan}}"
       tagged_interfaces:
       - "1.2"
-      validate_certs: False
-    delegate_to: localhost
+     #validate_certs: False
+        #delegate_to: localhost
 
   - name: CONFIGURING PROVIDER SELF-IP
     bigip_selfip:
-      server: "{{inventory_hostname}}"
-      user: "{{ user }}"
-      password: "{{ pass }}"
-      validate_certs: False
+      provider: "{{ provider }}"
       name: "{{sipExname}}"
       address: "{{sipExaddr}}"
       netmask: "{{sipExnmask}}"
       vlan: "{{tenant_name}}_{{consumer_vlan_name}}"
-    delegate_to: localhost
+      #delegate_to: localhost
 
   - name: CONFIGURING CONSUMER SELF-IP
     bigip_selfip:
-      server: "{{inventory_hostname}}"
-      user: '{{user}}'
-      password: "{{pass}}"
-      validate_certs: "false"
+      provider: "{{ provider }}"
       name: "{{sipINTname}}"     
       address: "{{sipINTaddr}}"
       netmask: "{{sipINTnmask}}"
       vlan: "{{tenant_name}}_{{provider_vlan_name}}"
-
 
