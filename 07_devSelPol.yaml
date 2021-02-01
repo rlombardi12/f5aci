@@ -2,6 +2,8 @@
   hosts: apic 
   connection: local
   gather_facts: false
+  vars: 
+      ansible_python_interpreter: /usr/bin/python3
 
   vars_files:
     - variable_file.yaml
