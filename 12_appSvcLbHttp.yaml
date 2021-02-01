@@ -2,6 +2,8 @@
   hosts: bigips
   connection: local
   gather_facts: false
+  vars:
+   ansible_python_interpreter: /usr/bin/python3
 
   vars_files:
     - variable_file.yaml
@@ -9,7 +11,7 @@
   tasks:
   - name: ADDING VIRTUAL SERVER
     bigip_virtual_server:
-         server: "{{inventory_hostname}}"
+         server: "{{server}}"
          user: "{{ user }}"
          password: "{{ pass }}"
          name: "{{tenant_name}}_http_vs"
