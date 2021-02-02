@@ -4,6 +4,13 @@
   gather_facts: false
   vars:
    ansible_python_interpreter: /usr/bin/python3
+   provider:
+     password: "{{pass}}"
+     server: "{{server}}"
+     user: "{{user}}"
+     validate_certs: no
+     server_port: 443
+
 
   vars_files:
     - variable_file.yaml
@@ -11,9 +18,8 @@
   tasks:
   - name: ADDING VIRTUAL SERVER
     bigip_virtual_server:
-         server: "{{server}}"
-         user: "{{ user }}"
-         password: "{{ pass }}"
+         provider: "{{ provider}}"
+         state: "present"
          name: "{{tenant_name}}_http_vs"
          destination: "{{vip_ip}}"
          port: "{{vip_port}}"
@@ -22,6 +28,4 @@
           - "{{tenant_name}}_{{provider_vlan_name}}"
          pool: "{{tenant_name}}_http-pool"
          snat: "automap"
-         validate_certs: False
     delegate_to: localhost
-

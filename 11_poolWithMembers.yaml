@@ -4,6 +4,13 @@
   gather_facts: false
   vars:
    ansible_python_interpreter: /usr/bin/python3
+   gather_facts: false
+   provider:
+     password: "{{pass}}"
+     server: "{{server}}"
+     user: "{{user}}"
+     validate_certs: no
+     server_port: 443
 
   vars_files:
     - variable_file.yaml
@@ -12,10 +19,7 @@
 
   - name: CREATING POOL
     bigip_pool:
-        server  : "{{server}}"
-        user: "{{user}}"
-        pass: "{{pass}}"
-        validate_certs: False
+        provider: "{{ provider}}"
         state: "present"
         name: "{{tenant_name}}_http-pool"
         lb_method: "round-robin"
@@ -23,12 +27,9 @@
 
   - name: ADDING POOL MEMBERS
     bigip_pool_member:
-        server  : "{{server}}"
-        user: "{{user}}"
-        pass: "{{pass}}"
+        provider: "{{ provider}}"    
         pool: "{{tenant_name}}_http-pool"
         host: "{{item.host}}"
         port: "{{item.port}}"
-        validate_certs: False
     with_items: "{{pool_members}}"
-    delegate_to: localhost 
+    delegate_to: localhost
