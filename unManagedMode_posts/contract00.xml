@@ -1,11 +1,11 @@
-<fvTenant dn="uni/tn-hetenant" name="hetenant">
+<fvTenant dn="uni/tn-rltenant" name="rltenant">
 <vzFilter name="http-filter">
     <vzEntry  name="http-e" etherT="ip" prot="tcp"/>
 </vzFilter>
 <vzFilter name="https-filter">
     <vzEntry  name="https-e" etherT="ip" prot="tcp"/>
 </vzFilter>
-    <vzBrCP ownerTag="" ownerKey="" name="heContract-bigipFin" descr="" scope="context" prio="unspecified">
+    <vzBrCP ownerTag="" ownerKey="" name="rlContract-bigipFin" descr="" scope="context" prio="unspecified">
         <vzSubj name="http" descr="" prio="unspecified" revFltPorts="yes" provMatchT="AtleastOne" consMatchT="AtleastOne">
             <vzRsSubjFiltAtt tnVzFilterName="http-filter"/>
         </vzSubj>

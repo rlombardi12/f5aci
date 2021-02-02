@@ -1,5 +1,5 @@
-<vnsLDevVip trunking="no" svcType="ADC" packageModel="" name="bigiphe" mode="legacy-Mode" managed="no" isCopy="no" funcType="GoTo" dn="uni/tn-hetenant/lDevVip-bigiphe" devtype="PHYSICAL" contextAware="single-Context">
-   <vnsRsALDevToPhysDomP tDn="uni/phys-heServiceUnmanagedPhy" />
+<vnsLDevVip trunking="no" svcType="ADC" packageModel="" name="bigiprl" mode="legacy-Mode" managed="no" isCopy="no" funcType="GoTo" dn="uni/tn-rltenant/lDevVip-bigiprl" devtype="PHYSICAL" contextAware="single-Context">
+   <vnsRsALDevToPhysDomP tDn="uni/phys-rlServiceUnmanagedPhy" />
    <vnsCDev name="Device2" vmName="" vcenterName="" devCtxLbl="">
       <vnsCCred name="username" value="a" />
       <vnsCCredSecret name="password" />
@@ -14,12 +14,12 @@
          <vnsRsCIfPathAtt tDn="topology/pod-1/paths-102/pathep-[eth1/34]" />
       </vnsCIf>
    </vnsCDev>
-   <vnsLIf name="External" encap="vlan-10">
-      <vnsRsCIfAttN tDn="uni/tn-hetenant/lDevVip-bigiphe/cDev-Device1/cIf-[Device1_IntExt]" />
-      <vnsRsCIfAttN tDn="uni/tn-hetenant/lDevVip-bigiphe/cDev-Device2/cIf-[Device2_IntExt]" />
+   <vnsLIf name="External" encap="vlan-100">
+      <vnsRsCIfAttN tDn="uni/tn-rltenant/lDevVip-bigiprl/cDev-Device1/cIf-[Device1_IntExt]" />
+      <vnsRsCIfAttN tDn="uni/tn-rltenant/lDevVip-bigiprl/cDev-Device2/cIf-[Device2_IntExt]" />
    </vnsLIf>
-   <vnsLIf name="Internal" encap="vlan-1">
-      <vnsRsCIfAttN tDn="uni/tn-hetenant/lDevVip-bigiphe/cDev-Device1/cIf-[Device1_IntExt]" />
-      <vnsRsCIfAttN tDn="uni/tn-hetenant/lDevVip-bigiphe/cDev-Device2/cIf-[Device2_IntExt]" />
+   <vnsLIf name="Internal" encap="vlan-10">
+      <vnsRsCIfAttN tDn="uni/tn-rltenant/lDevVip-bigiprl/cDev-Device1/cIf-[Device1_IntExt]" />
+      <vnsRsCIfAttN tDn="uni/tn-rltenant/lDevVip-bigiprl/cDev-Device2/cIf-[Device2_IntExt]" />
    </vnsLIf>
 </vnsLDevVip>
