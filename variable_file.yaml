@@ -34,8 +34,8 @@ pass: "+open-b#10"
 # networking #
 ##############
 
-gateway_bd_external: "10.1.100.1"
-gateway_bd_internal: "10.2.10.1"
+gateway_bd_external: "10.1.10.1"
+gateway_bd_internal: "10.1.20.1"
 
 ext_encap: "100"
 int_encap: "10"
@@ -51,19 +51,19 @@ provider_vlan: "10"
 server: "10.1.1.144"
 
 vip_port: "80"
-vip_ip: "10.1.100.100"
+vip_ip: "10.1.10.100"
 
 pool_members:
 - port: "80"
-  host: "10.2.10.11"
+  host: "10.1.20.11"
 - port: "80"
-  host: "10.2.10.12"
+  host: "10.1.20.12"
 
 sipExname: "{{tenant_name}}_{{consumer_vlan_name}}" 
-sipExaddr: '10.1.100.240'
+sipExaddr: '10.1.10.144'
 sipExnmask: '255.255.255.0'
 sipINTname: "{{tenant_name}}_{{provider_vlan_name}}"
-sipINTaddr: '10.2.10.240'
+sipINTaddr: '10.1.20.144'
 sipINTnmask: '255.255.255.0'
 
 

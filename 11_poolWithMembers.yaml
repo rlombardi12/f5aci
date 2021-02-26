@@ -23,6 +23,8 @@
         state: "present"
         name: "{{tenant_name}}_http-pool"
         lb_method: "round-robin"
+        monitor_type: "single"
+        monitors: "http"
         # delegate_to: localhost
 
   - name: ADDING POOL MEMBERS

@@ -25,7 +25,7 @@
       provider: "{{ provider }}"
       name: "{{tenant_name}}_{{consumer_vlan_name}}"
       tag: "{{consumer_vlan}}"
-      tagged_interfaces:
+      untagged_interfaces:
        - "1.1"
 
   - name: ADDING CONSUMER VLAN
@@ -33,7 +33,7 @@
       provider: "{{ provider }}"
       name: "{{tenant_name}}_{{provider_vlan_name}}"
       tag: "{{provider_vlan}}"
-      tagged_interfaces:
+      untagged_interfaces:
       - "1.2"
      #validate_certs: False
         #delegate_to: localhost
