@@ -28,7 +28,7 @@ physical_domain_name: "rlServiceUnmanagedPhy"
 username: "admin"
 password: "ciscopsdt"
 user: "admin"
-pass: "+open-b#10"
+pass: "xxxxxxx"
 
 ##############
 # networking #
